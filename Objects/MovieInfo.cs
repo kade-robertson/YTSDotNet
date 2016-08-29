@@ -33,7 +33,7 @@ namespace YTSDotNet
         public int RuntimeInMinutes;
 
         [JsonProperty(PropertyName = "genres")]
-        public List<string> Genres;
+        public string[] Genres;
 
         [JsonProperty(PropertyName = "summary")]
         public string Summary;
@@ -45,7 +45,7 @@ namespace YTSDotNet
         public string Synopsis;
 
         [JsonProperty(PropertyName = "yt_trailer_code")]
-        public string YoutubeTrailerURL { get { return YoutubeTrailerURL; } set { YoutubeTrailerURL = $"https://www.youtube.com/watch?v={value}"; } }
+        public string YoutubeTrailerURL;
 
         [JsonProperty(PropertyName = "language")]
         public string Language;
@@ -72,7 +72,7 @@ namespace YTSDotNet
         public string State;
 
         [JsonProperty(PropertyName = "torrents")]
-        public List<TorrentInfo> Torrents;
+        public TorrentInfo[] Torrents;
 
         [JsonProperty(PropertyName = "date_uploaded")]
         public string DateUploaded;

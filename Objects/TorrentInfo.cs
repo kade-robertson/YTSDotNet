@@ -23,7 +23,7 @@ namespace YTSDotNet
         public string Size;
 
         [JsonProperty(PropertyName = "size_bytes")]
-        public long SizeInBytes;
+        public string SizeInBytes;
 
         [JsonProperty(PropertyName = "date_uploaded")]
         public string DateUploaded;

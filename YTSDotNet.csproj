@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Client\YTSClient.cs" />
     <Compile Include="Objects\ListMovieData.cs" />
     <Compile Include="Objects\ListMovieResult.cs" />
     <Compile Include="Objects\Metadata.cs" />
