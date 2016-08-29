@@ -15,6 +15,6 @@ namespace YTSDotNet
         public int PageNumber;
 
         [JsonProperty(PropertyName = "movies")]
-        public MovieInfo[] Movies;
+        public List<MovieInfo> Movies;
     }
 }

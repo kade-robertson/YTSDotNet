@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System;
 
 namespace YTSDotNet
 {
@@ -29,11 +32,14 @@ namespace YTSDotNet
         [JsonProperty(PropertyName = "year")]
         public int Year;
 
+        [JsonProperty(PropertyName = "rating")]
+        public decimal Rating;
+
         [JsonProperty(PropertyName = "runtime")]
         public int RuntimeInMinutes;
 
         [JsonProperty(PropertyName = "genres")]
-        public string[] Genres;
+        public List<string> Genres;
 
         [JsonProperty(PropertyName = "summary")]
         public string Summary;
@@ -72,12 +78,23 @@ namespace YTSDotNet
         public string State;
 
         [JsonProperty(PropertyName = "torrents")]
-        public TorrentInfo[] Torrents;
+        public List<TorrentInfo> Torrents;
 
         [JsonProperty(PropertyName = "date_uploaded")]
         public string DateUploaded;
 
         [JsonProperty(PropertyName = "date_uploaded_unix")]
         public int DateUploadedUnix;
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine(LongTitle);
+            builder.AppendLine(" - Rating: " + Rating + "/10");
+            builder.Append(" - Qualities: ");
+            builder.AppendLine(string.Join(", ", Torrents.Select(tor => tor.Quality)));
+            builder.AppendLine(" - Uploaded: " + DateUploaded);
+            return builder.ToString();
+        }
     }
 }
