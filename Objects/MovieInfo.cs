@@ -77,6 +77,32 @@ namespace YTSDotNet
         [JsonProperty(PropertyName = "state")]
         public string State;
 
+        public bool HasScreenshots { get { return MediumScreenshot1 != null || MediumScreenshot2 != null || MediumScreenshot3 != null ||
+                                                  LargeScreenshot1 != null || LargeScreenshot2 != null || LargeScreenshot3 != null; } }
+
+        [JsonProperty(PropertyName = "medium_screenshot_image1")]
+        public string MediumScreenshot1;
+
+        [JsonProperty(PropertyName = "medium_screenshot_image2")]
+        public string MediumScreenshot2;
+
+        [JsonProperty(PropertyName = "medium_screenshot_image3")]
+        public string MediumScreenshot3;
+
+        [JsonProperty(PropertyName = "large_screenshot_image1")]
+        public string LargeScreenshot1;
+
+        [JsonProperty(PropertyName = "large_screenshot_image2")]
+        public string LargeScreenshot2;
+
+        [JsonProperty(PropertyName = "large_screenshot_image3")]
+        public string LargeScreenshot3;
+
+        public bool HasCastInfo { get { return CastMembers != null; } }
+
+        [JsonProperty(PropertyName = "cast")]
+        public List<CastMember> CastMembers;
+
         [JsonProperty(PropertyName = "torrents")]
         public List<TorrentInfo> Torrents;
 
@@ -94,6 +120,7 @@ namespace YTSDotNet
             builder.Append(" - Qualities: ");
             builder.AppendLine(string.Join(", ", Torrents.Select(tor => tor.Quality)));
             builder.AppendLine(" - Uploaded: " + DateUploaded);
+            builder.AppendLine(" - Has Cast: " + HasCastInfo);
             return builder.ToString();
         }
     }

@@ -42,5 +42,27 @@ namespace YTSDotNet
                 return info;
             }
         }
+
+        public async Task<MovieDataResult> MovieDetails(int id = 0, bool with_images = false, bool with_cast = false)
+        {
+            var format = "https://yts.ag/api/v2/movie_details.json?movie_id={0}&with_images={1}&with_cast={2}";
+            using (var client = new HttpClient())
+            {
+                var data = await client.GetStringAsync(string.Format(format, id, with_images ? "true" : "false", with_cast ? "true" : "false"));
+                var info = serializer.Deserialize<MovieDataResult>(new JsonTextReader(new StringReader(data)));
+                return info;
+            }
+        }
+
+        public async Task<MovieSuggestionResult> MovieSuggestions(int id = 0)
+        {
+            var format = "https://yts.ag/api/v2/movie_suggestions.json?movie_id={0}";
+            using (var client = new HttpClient())
+            {
+                var data = await client.GetStringAsync(string.Format(format, id));
+                var info = serializer.Deserialize<MovieSuggestionResult>(new JsonTextReader(new StringReader(data)));
+                return info;
+            }
+        }
     }
 }
