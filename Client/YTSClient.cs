@@ -23,7 +23,7 @@ namespace YTSDotNet
             }
         }
 
-        public async Task<ListMovieResult> ListMovies(int limit = 20, int page = 1, string quality = "All", int minimum_rating = 0, string query_term = "0", string genre = "", string sort_by = "date_added", string order_by = "desc", bool with_rt_ratings = false)
+        public async Task<RequestResult<ListMovieData>> ListMovies(int limit = 20, int page = 1, string quality = "All", int minimum_rating = 0, string query_term = "0", string genre = "", string sort_by = "date_added", string order_by = "desc", bool with_rt_ratings = false)
         {
             var format = "https://yts.ag/api/v2/list_movies.json?limit={0}&page={1}&quality={2}&minimum_rating={3}&query_term={4}&genre={5}&sort_by={6}&order_by={7}&with_rt_ratings={8}";
             using (var client = new HttpClient())
@@ -38,29 +38,29 @@ namespace YTSDotNet
                                                                      sort_by,
                                                                      order_by,
                                                                      with_rt_ratings ? "true" : "false"));
-                var info = serializer.Deserialize<ListMovieResult>(new JsonTextReader(new StringReader(data)));
+                var info = serializer.Deserialize<RequestResult<ListMovieData>>(new JsonTextReader(new StringReader(data)));
                 return info;
             }
         }
 
-        public async Task<MovieDataResult> MovieDetails(int id = 0, bool with_images = false, bool with_cast = false)
+        public async Task<RequestResult<MovieData>> MovieDetails(int id = 0, bool with_images = false, bool with_cast = false)
         {
             var format = "https://yts.ag/api/v2/movie_details.json?movie_id={0}&with_images={1}&with_cast={2}";
             using (var client = new HttpClient())
             {
                 var data = await client.GetStringAsync(string.Format(format, id, with_images ? "true" : "false", with_cast ? "true" : "false"));
-                var info = serializer.Deserialize<MovieDataResult>(new JsonTextReader(new StringReader(data)));
+                var info = serializer.Deserialize<RequestResult<MovieData>>(new JsonTextReader(new StringReader(data)));
                 return info;
             }
         }
 
-        public async Task<MovieSuggestionResult> MovieSuggestions(int id = 0)
+        public async Task<RequestResult<SuggestionData>> MovieSuggestions(int id = 0)
         {
             var format = "https://yts.ag/api/v2/movie_suggestions.json?movie_id={0}";
             using (var client = new HttpClient())
             {
                 var data = await client.GetStringAsync(string.Format(format, id));
-                var info = serializer.Deserialize<MovieSuggestionResult>(new JsonTextReader(new StringReader(data)));
+                var info = serializer.Deserialize<RequestResult<SuggestionData>>(new JsonTextReader(new StringReader(data)));
                 return info;
             }
         }

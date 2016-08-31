@@ -37,10 +37,11 @@
     <Compile Include="Client\YTSClient.cs" />
     <Compile Include="Objects\CastMember.cs" />
     <Compile Include="Objects\ListMovieData.cs" />
-    <Compile Include="Objects\ListMovieResult.cs" />
     <Compile Include="Objects\Metadata.cs" />
     <Compile Include="Objects\MovieData.cs" />
     <Compile Include="Objects\MovieInfo.cs" />
+    <Compile Include="Objects\SuggestionData.cs" />
+    <Compile Include="Objects\RequestResult.cs" />
     <Compile Include="Objects\TorrentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

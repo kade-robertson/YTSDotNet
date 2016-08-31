@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace YTSDotNet
 {
-    public class MovieSuggestionResult
+    public class RequestResult<T> 
     {
         [JsonProperty(PropertyName = "status")]
         public string Status;
@@ -12,18 +11,9 @@ namespace YTSDotNet
         public string StatusMessage;
 
         [JsonProperty(PropertyName = "data")]
-        public SuggestionData Data;
+        public T Data;
 
         [JsonProperty(PropertyName = "@meta")]
         public Metadata MetaInfo;
-    }
-
-    public class SuggestionData
-    {
-        [JsonProperty(PropertyName = "movie_count")]
-        public int SuggestionCount;
-
-        [JsonProperty(PropertyName = "movies")]
-        public List<MovieInfo> Suggestions;
     }
 }
